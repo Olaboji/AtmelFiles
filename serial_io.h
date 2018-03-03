@@ -2,7 +2,9 @@
 #include <avr/io.h>
 
 #include <stdlib.h>
-/*Functions for serial input and output*/
+
+/*Functions for serial input and output for the ATmega168PB*/
+
 
 void initSerial(){
 	UCSR0B = (1 << TXEN0) | (1 << RXEN0) | (1 << RXCIE0); // Enable de USART Transmitter, Reciever and Reciever interrupt
@@ -17,14 +19,14 @@ void writeChar(char character) {
 	while (~UCSR0A & (1 << UDRE0));
 	UDR0 = character;
 }
-//code van practicum
+
 void writeString(char _string[])
 {
 	for (uint8_t i = 0; _string[i] != 0; i++) {
 		writeChar(_string[i]);
 	}
 }
-//code van practicum
+
 void writeInt(int _int, int buffersize)
 {
 	char buffer[buffersize];
@@ -44,10 +46,7 @@ c=UDR0;
 	  
 return c; 
 }
-//code van practicum
 
-
-//code van practicum
 int readInt( int buffersize)
 {
 	
